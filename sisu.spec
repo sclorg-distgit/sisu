@@ -6,7 +6,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        2.3.0
-Release:        11.14%{?dist}
+Release:        11.15%{?dist}
 Summary:        Sonatype dependency injection framework
 License:        ASL 2.0 and EPL and MIT
 URL:            http://github.com/sonatype/sisu
@@ -25,19 +25,19 @@ BuildArch:      noarch
 BuildRequires:  %{?scl_prefix_java_common}javapackages-tools
 BuildRequires:  %{?scl_prefix_java_common}maven-local
 
-BuildRequires:  maven30-aopalliance
+BuildRequires:  %{?scl_prefix}aopalliance
 BuildRequires:  %{?scl_prefix_java_common}atinject
-BuildRequires:  maven30-cdi-api
+BuildRequires:  %{?scl_prefix}cdi-api
 BuildRequires:  %{?scl_prefix_java_common}felix-framework
-BuildRequires:  maven30-forge-parent
-BuildRequires:  maven30-google-guice
+BuildRequires:  %{?scl_prefix}forge-parent
+BuildRequires:  %{?scl_prefix}google-guice
 BuildRequires:  %{?scl_prefix_java_common}junit
-BuildRequires:  maven30-plexus-classworlds
-BuildRequires:  maven30-plexus-containers-component-annotations
-BuildRequires:  maven30-plexus-utils
-BuildRequires:  maven30-sisu
-BuildRequires:  maven30-testng
-BuildRequires:  maven30-weld-parent
+BuildRequires:  %{?scl_prefix}plexus-classworlds
+BuildRequires:  %{?scl_prefix}plexus-containers-component-annotations
+BuildRequires:  %{?scl_prefix}plexus-utils
+BuildRequires:  %{?scl_prefix}sisu
+BuildRequires:  %{?scl_prefix}testng
+BuildRequires:  %{?scl_prefix}weld-parent
 
 Requires:       %{name}-bean              = %{version}-%{release}
 Requires:       %{name}-bean-binders      = %{version}-%{release}
@@ -220,7 +220,7 @@ This package contains %{summary}.
 
 %prep
 %setup -q -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 
 # Animal sniffer is only causing problems
@@ -271,14 +271,14 @@ done
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_package ":{sisu,guice}-{*}" @2
 %mvn_build -s -f
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -365,6 +365,9 @@ set -e -x
 
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 2.3.0-11.15
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 2.3.0-11.14
 - maven33 rebuild
 
