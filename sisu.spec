@@ -9,7 +9,7 @@
 Name:           %{?scl_prefix}%{pkg_name}
 Epoch:          1
 Version:        0.3.2
-Release:        2.1%{?dist}
+Release:        2.2%{?dist}
 Summary:        Eclipse dependency injection framework
 License:        EPL
 URL:            http://eclipse.org/sisu
@@ -34,10 +34,10 @@ BuildRequires:  %{?scl_prefix}mvn(javax.enterprise:cdi-api)
 BuildRequires:  %{?scl_prefix_java_common}mvn(javax.inject:javax.inject)
 BuildRequires:  %{?scl_prefix_java_common}mvn(javax.servlet:servlet-api)
 BuildRequires:  %{?scl_prefix_java_common}mvn(junit:junit)
+BuildRequires:  %{?scl_prefix_java_common}mvn(org.apache.felix:org.apache.felix.framework)
 BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-classworlds)
 BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-component-annotations)
 BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-utils)
-BuildRequires:  %{?scl_prefix}mvn(org.osgi:org.osgi.core)
 BuildRequires:  %{?scl_prefix_java_common}mvn(org.slf4j:slf4j-api)
 BuildRequires:  %{?scl_prefix}mvn(org.testng:testng)
 
@@ -76,17 +76,6 @@ cp %{SOURCE102} sisu-plexus/pom.xml
 %patch0
 %patch2
 
-# XXX remove OSGi-specific code until Felix is updated
-rm -f sisu-inject/org.eclipse.sisu.inject/src/org/eclipse/sisu/launch/BundleModule.java
-rm -f sisu-inject/org.eclipse.sisu.inject/src/org/eclipse/sisu/launch/SisuBundlePlan.java
-rm -f sisu-inject/org.eclipse.sisu.inject/src/org/eclipse/sisu/launch/SisuExtender.java
-rm -f sisu-inject/org.eclipse.sisu.inject/src/org/eclipse/sisu/launch/SisuTracker.java
-rm -f sisu-inject/org.eclipse.sisu.inject/src/org/eclipse/sisu/osgi/BindingTracker.java
-rm -f sisu-inject/org.eclipse.sisu.inject/src/org/eclipse/sisu/osgi/ServiceBinding.java
-rm -f sisu-inject/org.eclipse.sisu.inject/src/org/eclipse/sisu/osgi/ServiceBindings.java
-rm -f sisu-inject/org.eclipse.sisu.inject/src/org/eclipse/sisu/space/BundleClassSpace.java
-rm -f sisu-plexus/org.eclipse.sisu.plexus/src/org/eclipse/sisu/plexus/PlexusBundlePlan.java
-
 %{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_file ":{*}" @1
@@ -116,6 +105,9 @@ set -e -x
 
 
 %changelog
+* Sat Jan 16 2016 Michal Srb <msrb@redhat.com> - 1:0.3.2-2.2
+- Build with OSGi-specific classes
+
 * Mon Jan 11 2016 Mikolaj Izdebski <mizdebsk@redhat.com> - 1:0.3.2-2.1
 - SCL-ize package
 - Build without Tycho

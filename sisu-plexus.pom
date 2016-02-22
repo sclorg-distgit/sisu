@@ -39,9 +39,9 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>org.osgi.core</artifactId>
-			<version>5.0.0</version>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.framework</artifactId>
+			<version>4.2.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
