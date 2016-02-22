@@ -53,5 +53,15 @@
 	</dependencies>
 	<build>
 		<sourceDirectory>org.eclipse.sisu.plexus/src</sourceDirectory>
+		<resources>
+			<resource>
+				<targetPath>META-INF/plexus</targetPath>
+				<filtering>false</filtering>
+				<directory>${basedir}/org.eclipse.sisu.plexus/META-INF/plexus</directory>
+				<includes>
+					<include>components.xml</include>
+				</includes>
+			</resource>
+		</resources>
 	</build>
 </project>
