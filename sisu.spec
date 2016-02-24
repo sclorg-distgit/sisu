@@ -9,7 +9,7 @@
 Name:           %{?scl_prefix}%{pkg_name}
 Epoch:          1
 Version:        0.3.2
-Release:        2.3%{?dist}
+Release:        2.4%{?dist}
 Summary:        Eclipse dependency injection framework
 License:        EPL
 URL:            http://eclipse.org/sisu
@@ -105,6 +105,9 @@ set -e -x
 
 
 %changelog
+* Tue Jan 19 2016 Mikolaj Izdebski <mizdebsk@redhat.com> - 1:0.3.2-2.4
+- Generate auto-requires on cdi-api
+
 * Sun Jan 17 2016 Michal Srb <msrb@redhat.com> - 1:0.3.2-2.3
 - Include components.xml in the resulting jar
 
