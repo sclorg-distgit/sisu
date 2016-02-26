@@ -9,7 +9,7 @@
 Name:           %{?scl_prefix}%{pkg_name}
 Epoch:          1
 Version:        0.3.2
-Release:        2.4%{?dist}
+Release:        2.5%{?dist}
 Summary:        Eclipse dependency injection framework
 License:        EPL
 URL:            http://eclipse.org/sisu
@@ -26,7 +26,7 @@ Patch2:         %{pkg_name}-ignored-tests.patch
 
 BuildArch:      noarch
 
-BuildRequires:  %{?scl_prefix_java_common}maven-local
+BuildRequires:  %{?scl_prefix}maven-local
 BuildRequires:  %{?scl_prefix}mvn(com.google.inject.extensions:guice-servlet)
 BuildRequires:  %{?scl_prefix}mvn(com.google.inject:guice::no_aop:)
 BuildRequires:  %{?scl_prefix}mvn(javax.annotation:javax.annotation-api)
@@ -105,6 +105,9 @@ set -e -x
 
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1:0.3.2-2.5
+- Fix BR on maven-local & co.
+
 * Tue Jan 19 2016 Mikolaj Izdebski <mizdebsk@redhat.com> - 1:0.3.2-2.4
 - Generate auto-requires on cdi-api
 
